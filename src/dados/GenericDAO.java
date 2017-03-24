@@ -14,10 +14,10 @@ public  class GenericDAO {
     public Statement stm;
     public ResultSet rs;
     private final String Driver = "com.mysql.jdbc.Driver";
-    private final String BD = "aula2";
+    private final String BD = "aula";
     private final String Conexao = "jdbc:mysql://localhost:3306/"+BD;
-    private final String Usuario = "root";
-    private final String senha = "";
+    private final String Usuario = "aula1";
+    private final String senha = "asdf";
     public Connection conn;
     public Connection getConnection()throws BancoDeDadosException{
         

@@ -211,7 +211,8 @@ private Fachada fachada;
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
-        
+        if(jTextNome.getText() ==null || jTextCpf.getText()== null || jTextNome.getText().trim().equals("")|| jTextCpf.getText().trim().equals("")){
+           JOptionPane.showMessageDialog(null, "Campo Nome ou CpF não preenchido!");} else          
         try {
          
             try {

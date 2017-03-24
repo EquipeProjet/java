@@ -192,10 +192,10 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        if(jTextFieldProduto.getText() ==null || jTextFieldPreco.getText()== null || jTextFieldQuantidade.getText() ==null||
-                jTextFieldProduto.getText().trim().equals("")||
-                jTextFieldPreco.getText().trim().equals("")|| jTextFieldQuantidade.getText().trim().equals("")){
-           JOptionPane.showMessageDialog(null, "Campo Produto ou Preço do Produto Não Preenchido!");} else  
+      if(jTextFieldProduto.getText() ==null || jTextFieldPreco.getText()== null||jTextFieldQuantidade.getText()==null || 
+           jTextFieldProduto.getText().trim().equals("")||jTextFieldPreco.getText().trim().equals("")|| jTextFieldQuantidade.getText().trim().equals("")|| jTextFieldQuantidade.getText().trim().equals(""))
+                     {
+           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");} else   
         
         try {
          

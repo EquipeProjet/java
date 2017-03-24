@@ -160,6 +160,14 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        
+  if(jTextFieldLogin.getText() ==null || jPasswordFieldSenha.getText() == null ||
+   jTextFieldLogin.getText().trim().equals("")|| jPasswordFieldSenha.getText().trim().equals(""))
+              
+    {
+        JOptionPane.showMessageDialog(null, "Os Campos não foram preenchidos");}
+          else  
+
         try{
         fachada.adicionarUsuario(jTextFieldLogin.getText(), jPasswordFieldSenha.getText());
         limparCampos();
