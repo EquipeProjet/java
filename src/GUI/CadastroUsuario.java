@@ -170,6 +170,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
         try{
         fachada.adicionarUsuario(jTextFieldLogin.getText(), jPasswordFieldSenha.getText());
+        JOptionPane.showMessageDialog(null, "Usuario Adicionado com sucesso!");
         limparCampos();
         }catch (BancoDeDadosException ex) {
             JOptionPane.showMessageDialog(this,
