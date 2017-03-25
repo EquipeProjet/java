@@ -72,13 +72,13 @@ public class ProdutoDAO extends GenericDAO   {
         }
     //Procurar Cliente 
     
-public void deletarProduto(Produto produto)throws BancoDeDadosException 
+public void deletarProduto(int produto_id )throws BancoDeDadosException 
 { String query= ("DELETE FROM Produto WHERE produto_id = ?");
 PreparedStatement ps = prepareStatement(query);
 try{
-    ps.setInt(1, produto.getProduto_id());
+    ps.setInt(1, produto_id);
     ps.executeUpdate();
-    ps.close();
+   // ps.close();
   } catch (SQLException ex) {
             throw new BancoDeDadosException("Erro ao Excluir");
 }

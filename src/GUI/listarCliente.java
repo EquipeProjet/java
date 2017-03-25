@@ -113,6 +113,7 @@ public class listarCliente extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
+        jButtonDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,6 +167,13 @@ public class listarCliente extends javax.swing.JFrame {
             }
         });
 
+        jButtonDeletar.setText("Deletar");
+        jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,17 +212,20 @@ public class listarCliente extends javax.swing.JFrame {
                                             .addComponent(jLabel8))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(jTextEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(93, 93, 93))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonEditar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonDeletar)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonCancelar)
-                        .addGap(205, 205, 205))))
+                        .addGap(112, 112, 112))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +242,8 @@ public class listarCliente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSalvar)
                             .addComponent(jButtonCancelar)
-                            .addComponent(jButtonEditar))
+                            .addComponent(jButtonEditar)
+                            .addComponent(jButtonDeletar))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,9 +271,9 @@ public class listarCliente extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel8)
                     .addComponent(jTextEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -344,6 +356,56 @@ jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
         setVisible(false);    
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
+
+        jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
+        try{
+            try {
+
+                Cliente ler = fachada.lerCliente(jLabelID.getText());
+
+            } catch (BancoDeDadosException ex) {
+                Logger.getLogger(listarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } }catch (NomeNuloException ex) {
+                Logger.getLogger(listarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            int idvalida = Integer.parseInt(jLabelID.getText());
+
+            try {
+                fachada.deletarCliente(idvalida);
+                ArrayList<Cliente> lista = fachada.listarCliente();
+
+                String[] colunas = {"id","nome","cpf","telefone","endereco","numero","cep","bairro"};
+
+                Object[][] dados = carregarDados(lista);
+
+                DefaultTableModel model = new DefaultTableModel(dados, colunas);
+
+                jTable1.setModel(model);
+
+                jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+                jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
+                jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+                jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+                jTable1.getColumnModel().getColumn(4).setPreferredWidth(200);
+                jTable1.getColumnModel().getColumn(5).setPreferredWidth(100);
+                jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
+                jTable1.getColumnModel().getColumn(7).setPreferredWidth(200);
+
+                jTable1.setRowSelectionInterval(0, 0);
+
+                jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+
+            } catch (NomeNuloException ex) {
+                Logger.getLogger(listarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (BancoDeDadosException ex) {
+                Logger.getLogger(listarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "Concluído com Sucesso!","Mensagem",0);
+
+    }//GEN-LAST:event_jButtonDeletarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -386,6 +448,7 @@ jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel2;

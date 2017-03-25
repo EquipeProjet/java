@@ -63,6 +63,13 @@ public class CadastroClientes {
      public Cliente lerCliente(String cliente_id)throws BancoDeDadosException, NomeNuloException{
        return clientes.lerCliente(cliente_id);
     }
+     
+     
+     public void deletarCliente(int cliente_id) 
+            throws BancoDeDadosException{
+        clientes.deletarCliente(cliente_id);
+    }
+   
     /*
     public void  procurarUsuario(String nome) throws BancoDeDadosException {
          Cliente a = new Cliente(nome);

@@ -99,6 +99,7 @@ public class listarUsuario extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonDeletar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -136,6 +137,13 @@ public class listarUsuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonDeletar.setText("Deletar");
+        jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,6 +157,8 @@ public class listarUsuario extends javax.swing.JFrame {
                         .addComponent(jLabelID))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jButtonDeletar)
+                            .addGap(18, 18, 18)
                             .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +193,8 @@ public class listarUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEditar)
                     .addComponent(jButtonSalvar)
-                    .addComponent(jButtonCancelar))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonDeletar))
                 .addContainerGap())
         );
 
@@ -216,9 +227,8 @@ public class listarUsuario extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -288,6 +298,59 @@ public class listarUsuario extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
+        jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
+
+        try {
+
+            Usuario ler = fachada.lerUsuario(jLabelID.getText());
+
+            //jTextFieldLogin.setText(ler.getLogin());
+            //jPasswordFieldSenha.setText (Integer.toString(ler.getSenha()));
+            // jPasswordFieldSenha.setText(ler.getSenha());
+            //jTextFielQuant.setText(Integer.toString(ler.getQuantidade()));
+        }
+        catch (BancoDeDadosException ex) {
+            JOptionPane.showMessageDialog(this,
+                ex.getMessage(), "Erro",
+                JOptionPane.ERROR_MESSAGE);
+        }
+
+        try{
+
+            //fachada.adicionarUsuarios(jTextFieldCadastroRH.getText(), jTextFieldNome.getText(), jTextFieldCPF.getText(), jTextFieldDataNascimento.getText(), jTextFieldSetor.getText(), String.valueOf(CargoSelect), jTextFieldLogin.getText(), jPasswordFieldSenha.getText());
+
+            int idvalida = Integer.parseInt(jLabelID.getText());
+
+            fachada.deletarUsuario(idvalida);
+            JOptionPane.showMessageDialog(null, "Concluído com Sucesso!","Mensagem",0);
+
+            ArrayList<Usuario> lista = fachada.listarUsuario();
+
+            String[] colunas = {"id","login","senha"};
+
+            Object[][] dados = carregarDados(lista);
+
+            DefaultTableModel model = new DefaultTableModel(dados, colunas);
+
+            jTable1.setModel(model);
+
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            //jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+            jTable1.setRowSelectionInterval(0, 0);
+
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+
+        }
+        catch(BancoDeDadosException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        jTextFieldLogin.setText("");
+        jPasswordFieldSenha.setText("");
+    }//GEN-LAST:event_jButtonDeletarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,6 +392,7 @@ public class listarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;

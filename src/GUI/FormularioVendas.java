@@ -6,6 +6,7 @@
 package GUI;
 
 import GUI.listarProduto;
+import GUI.listarProduto;
 import dados.GenericDAO;
 import excecoes.BancoDeDadosException;
 import excecoes.NomeNuloException;
@@ -58,14 +59,14 @@ public class FormularioVendas extends javax.swing.JFrame {
         jTextFieldValorItem = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldData = new javax.swing.JTextField();
-        jButtonProduto = new javax.swing.JButton();
-        jButtonBuscar = new javax.swing.JButton();
+        jButtonBuscarProduto = new javax.swing.JButton();
+        jButtonBuscarCliente = new javax.swing.JButton();
         jLabelID = new javax.swing.JLabel();
         jButtonTabelaProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtb2 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -110,17 +111,17 @@ public class FormularioVendas extends javax.swing.JFrame {
 
         jLabel5.setText("Data:");
 
-        jButtonProduto.setText("Buscar");
-        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscarProduto.setText("Buscar");
+        jButtonBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProdutoActionPerformed(evt);
+                jButtonBuscarProdutoActionPerformed(evt);
             }
         });
 
-        jButtonBuscar.setText("Buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscarCliente.setText("Buscar");
+        jButtonBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
+                jButtonBuscarClienteActionPerformed(evt);
             }
         });
 
@@ -177,11 +178,11 @@ public class FormularioVendas extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonBuscar)
+                        .addComponent(jButtonBuscarCliente)
                         .addGap(18, 18, 18)
                         .addComponent(jFormattedTextFielProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonProduto)
+                        .addComponent(jButtonBuscarProduto)
                         .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -195,8 +196,8 @@ public class FormularioVendas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFielProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonProduto)
-                    .addComponent(jButtonBuscar))
+                    .addComponent(jButtonBuscarProduto)
+                    .addComponent(jButtonBuscarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -228,18 +229,15 @@ public class FormularioVendas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtb2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Cliente", "Produto", "Data", "Valor", "Quantidade"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jtb2);
 
         jLabel6.setText("Tabela de Pesquisa:");
 
@@ -400,8 +398,8 @@ public class FormularioVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldClienteActionPerformed
 
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-/*listap c = null;
+    private void jButtonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarClienteActionPerformed
+/*listap c = null; //
        try {
            c = new listap();
        } catch (NomeNuloException ex) {
@@ -431,9 +429,9 @@ public class FormularioVendas extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
+    }//GEN-LAST:event_jButtonBuscarClienteActionPerformed
 
-    private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
+    private void jButtonBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarProdutoActionPerformed
 
         jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
          
@@ -455,15 +453,18 @@ public class FormularioVendas extends javax.swing.JFrame {
     
         
            // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProdutoActionPerformed
+    }//GEN-LAST:event_jButtonBuscarProdutoActionPerformed
 
     private void jFormattedTextFielProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFielProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFielProdutoActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-       try {
-         
+       
+        try {
+         DefaultTableModel val = (DefaultTableModel) jtb2.getModel();
+          Object[] dados4 = {jTextFieldCliente.getText(),jFormattedTextFielProduto.getText(), jTextFieldData.getText(),jTextFieldValorItem.getText(),jTextFieldQuant.getText()};
+          val.addRow(dados4);
             try {
                 fachada.adicionarVenda(jTextFieldData.getText(), jTextFieldCliente.getText(), jFormattedTextFielProduto.getText(),Double.parseDouble(jTextFieldValorItem.getText()), Integer.parseInt(jTextFieldQuant.getText()));
                 JOptionPane.showMessageDialog(null, "Venda Inserida com sucesso!");
@@ -479,6 +480,8 @@ public class FormularioVendas extends javax.swing.JFrame {
                     "ERROr",
                     JOptionPane.ERROR_MESSAGE);
         }
+       
+       soma();
        jTextFieldData.setText("");
           
           jTextFieldCliente.setText("");
@@ -489,13 +492,24 @@ public class FormularioVendas extends javax.swing.JFrame {
          // Double.parseDouble(jTextFieldtotal.getText())=(Double.parseDouble(jTextFieldValorItem.getText())*Integer.parseInt(jTextFieldQuant.getText()));
           
 //jPasswordFieldSenha.setText("");
+      /*    
+         String Cliente= jTextFieldCliente.getText();
+         String Produto= jFormattedTextFielProduto.getText().trim();
+         String Data= jTextFieldData.getText().trim();
+         String Valor= jTextFieldValorItem.getText().trim();
+         String Quantidade= jTextFieldQuant.getText().trim(); 
+                 DefaultTableModel val = (DefaultTableModel) jtb2.getModel();
+                 val.addRow(new String[]{Cliente,Produto, Data, Valor , Quantidade});
+           */
+          
+          
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonTabelaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTabelaProdutoActionPerformed
 try{
     ArrayList<Produto> lista2 = fachada.listarProduto();
     
-    String[] colunas = {"cliente_id","nome"};        
+    String[] colunas = {"produto_id","nome","preco","quantidade"};      
     
     Object[][] dados2 = carregarDados3(lista2);        
     
@@ -533,13 +547,13 @@ try{
          //setVisible(false);
      }
          private Object[][] carregarDados3(ArrayList<Produto> lista2) {
-                 Object[][] dados2 = new Object[lista2.size()][2];
+                 Object[][] dados2 = new Object[lista2.size()][4];
          
         for (int i = 0; i < lista2.size(); i++) {
             dados2[i][0] = lista2.get(i).getProduto_id();
             dados2[i][1] = lista2.get(i).getNome();
-            //dados[i][2] = lista.get(i).getCpf();
-            //dados[i][3] = lista.get(i).getTelefone();
+            dados2[i][2] = lista2.get(i).getPreco();
+            dados2[i][3] = lista2.get(i).getQuantidade();;
             //dados[i][4] = lista.get(i).getEndereco();
             //dados[i][5] = lista.get(i).getNumero();
             //dados[i][6] = lista.get(i).getCep();
@@ -552,18 +566,19 @@ try{
 
     private void jTextFieldtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtotalActionPerformed
 
-double x = Double.parseDouble(jTextFieldValorItem.getText());  
-int y = Integer.parseInt(jTextFieldQuant.getText());  
-double resultado = x*y;  
-jTextFieldtotal.setText(String.valueOf(resultado));  
-        // TODO add your handling code here:
+soma();
     }//GEN-LAST:event_jTextFieldtotalActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
        dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-
+public void soma(){
+    double x = Double.parseDouble(jTextFieldValorItem.getText());  
+int y = Integer.parseInt(jTextFieldQuant.getText());  
+double resultado = x*y;  
+jTextFieldtotal.setText(String.valueOf(resultado));  
+}
+ 
     
     /**
      * @param args the command line arguments
@@ -607,9 +622,9 @@ jTextFieldtotal.setText(String.valueOf(resultado));
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBuscaCliente;
-    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonBuscarCliente;
+    private javax.swing.JButton jButtonBuscarProduto;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonProduto;
     private javax.swing.JButton jButtonTabelaProduto;
     private javax.swing.JFormattedTextField jFormattedTextFielProduto;
     private javax.swing.JLabel jLabel1;
@@ -626,12 +641,12 @@ jTextFieldtotal.setText(String.valueOf(resultado));
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextFieldCliente;
     private javax.swing.JTextField jTextFieldData;
     private javax.swing.JTextField jTextFieldQuant;
     private javax.swing.JTextField jTextFieldValorItem;
     private javax.swing.JTextField jTextFieldtotal;
+    private javax.swing.JTable jtb2;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

@@ -111,6 +111,7 @@ public class listarProduto extends javax.swing.JFrame {
         jButtonCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTextFielQuant = new javax.swing.JTextField();
+        jButtonDeletar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -146,6 +147,13 @@ public class listarProduto extends javax.swing.JFrame {
 
         jLabel3.setText("Quantidade:");
 
+        jButtonDeletar.setText("Deletar");
+        jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,11 +179,14 @@ public class listarProduto extends javax.swing.JFrame {
                             .addComponent(jTextFielQuant, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                             .addComponent(jTextFielPreco))))
                 .addGap(32, 32, 32)
-                .addComponent(jButtonEditar)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCancelar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCancelar))
+                    .addComponent(jButtonDeletar))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -204,6 +215,8 @@ public class listarProduto extends javax.swing.JFrame {
                             .addComponent(jButtonEditar)
                             .addComponent(jButtonSalvar)
                             .addComponent(jButtonCancelar))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonDeletar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -318,6 +331,52 @@ public class listarProduto extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
+        jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
+
+        try {
+
+            Produto ler = fachada.lerProduto(jLabelID.getText());
+
+        }
+        catch (BancoDeDadosException ex) {
+            JOptionPane.showMessageDialog(this,
+                ex.getMessage(), "Erro",
+                JOptionPane.ERROR_MESSAGE);
+        } catch (NomeNuloException ex) {
+            Logger.getLogger(listarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try{
+            int idvalida = Integer.parseInt(jLabelID.getText());
+
+            fachada.deletarProduto(idvalida);
+            JOptionPane.showMessageDialog(null, "Concluído com Sucesso!","Mensagem",0);
+
+            ArrayList<Produto> lista = fachada.listarProduto();
+
+            String[] colunas = {"id_produto","nome","preço","quantidade"};
+
+            Object[][] dados = carregarDados(lista);
+
+            DefaultTableModel model = new DefaultTableModel(dados, colunas);
+
+            jTable1.setModel(model);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+            jTable1.setRowSelectionInterval(0, 0);
+
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+
+        }catch (NomeNuloException ex) {
+            Logger.getLogger(listarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BancoDeDadosException ex) {
+            Logger.getLogger(listarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonDeletarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,6 +425,7 @@ public class listarProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;

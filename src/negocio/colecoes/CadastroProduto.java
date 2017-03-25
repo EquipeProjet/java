@@ -36,8 +36,9 @@ public class CadastroProduto {
          Produto a = new Produto(nome);
     }
     
-    public void deletarProduto(int produto_id) throws BancoDeDadosException{
-        Produto a = new Produto(produto_id);
+    public void deletarProduto(int produto_id) 
+            throws BancoDeDadosException{
+        produtos.deletarProduto(produto_id);
     }
 
        public ArrayList<Produto> listarProduto() 

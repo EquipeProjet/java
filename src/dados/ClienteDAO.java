@@ -166,14 +166,14 @@ public class ClienteDAO extends GenericDAO {
     }
     //Procurar Cliente 
 
-    public void deletarCliente(Cliente cliente) throws BancoDeDadosException {
+    public void deletarCliente(int cliente_id) throws BancoDeDadosException {
         String query = ("DELETE FROM Cliente WHERE cliente_id = ?");
         PreparedStatement ps = prepareStatement(query);
         try {
-            ps.setInt(1, cliente.getCliente_id());
+            ps.setInt(1,cliente_id );
             ps.executeUpdate();
            
-            ps.close();
+            //ps.close();
         } catch (SQLException ex) {
             throw new BancoDeDadosException("Erro ao Excluir");
         }
