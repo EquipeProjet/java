@@ -6,7 +6,7 @@ import excecoes.NomeNuloException;
 public class Cliente {
 
     private int id;
-    private String nome, cpf, telefone, endereco, numero, cep, bairro;
+    private String nome, cpf, telefone, endereco, numero, cidade, bairro;
 
     
     public void setNome(String n) throws NomeNuloException {
@@ -65,12 +65,12 @@ public class Cliente {
 
     }
 
-    public void setCep(String ce) {
-        cep = ce;
+    public void setCidade(String ce) {
+        cidade = ce;
     }
 
-    public String getCep() {
-        return cep;
+    public String getCidade() {
+        return cidade;
     }
 
     public void setBairro(String b) {
@@ -87,7 +87,7 @@ public Cliente(int i, String n, String c, String t, String e, String nu, String 
         setTelefone(t);
         setEndereco(e);
         setNumero(nu);
-        setCep(ce);
+        setCidade(ce);
         setBairro(b);
     }
 
@@ -97,7 +97,7 @@ public Cliente(int i, String n, String c, String t, String e, String nu, String 
         setTelefone(t);
         setEndereco(e);
         setNumero(nu);
-        setCep(ce);
+        setCidade(ce);
         setBairro(b);
     }
 

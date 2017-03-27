@@ -23,10 +23,10 @@ public class CadastroVendas {
     
   }
     
-    public void adicionarVenda(String d, String nc,String np, double v, int q) throws BancoDeDadosException, NomeNuloException {
+   public void adicionarVenda(int i, String d, String nc,String np, double v, int q) throws BancoDeDadosException, NomeNuloException {
         
         
-        Venda  a = new Venda(d, nc, np, v, q); 
+        Venda  a = new Venda(i, d, nc, np, v, q); 
         //manda cadastra no banco
        
         vendas.adicionarVenda(a);

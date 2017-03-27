@@ -1,0 +1,69 @@
+DROP DATABASE IF EXISTS aula;
+create database  aula;
+use aula;
+create table Cliente (
+cliente_id int primary key not null auto_increment,
+ nome varchar(50),
+ cpf varchar(20),
+ telefone varchar(20),
+ endereco varchar(60), 
+ numero varchar(10), 
+ cidade varchar(20), 
+ bairro varchar(50));
+ 
+create table Usuario (
+id  int primary key NOT NULL AUTO_INCREMENT,
+login varchar(30),
+ senha varchar(20));
+ 
+create table Produto (
+produto_id int primary key not null auto_increment, 
+nome varchar(20), 
+preco double, 
+quantidade int);
+
+
+create table Venda(
+ id int,
+ data varchar(20), 
+ nomeCliente varchar(100),
+ nomeProduto varchar(100),
+ valorVenda double,
+ quant int );
+ 
+ create table estoque(
+ id_est int,
+ nome_pro varchar(20),
+ quant_es int);
+  
+DELIMITER $
+
+create trigger produto_insert after insert on produto  for 
+each row begin 
+insert into estoque set
+id_est = new.produto_id,
+nome_pro = new.nome,
+quant_es = new.quantidade;
+end $ 
+
+create trigger produto_update after update on produto for
+each row begin 
+update estoque set
+quant_es = new.quantidade
+where id_est = new.produto_id;
+end$
+
+create trigger des_produto after insert on venda for each row begin
+update produto set
+quantidade = (quantidade - new.quant)
+where produto_id = new.id;
+
+end$
+
+create trigger produto_delete before delete on produto for
+each row begin delete from estoque where id_est = old.produto_id;
+end$
+
+
+DELIMITER ; 
+

@@ -76,7 +76,7 @@ public class listarCliente extends javax.swing.JFrame {
             dados[i][3] = lista.get(i).getTelefone();
             dados[i][4] = lista.get(i).getEndereco();
             dados[i][5] = lista.get(i).getNumero();
-            dados[i][6] = lista.get(i).getCep();
+            dados[i][6] = lista.get(i).getCidade();
             dados[i][7] = lista.get(i).getBairro();
            
         }
@@ -115,7 +115,8 @@ public class listarCliente extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jButtonDeletar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Cliente");
 
         jLabelID.setText("Id:");
 
@@ -179,7 +180,7 @@ public class listarCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,11 +214,9 @@ public class listarCliente extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(93, 93, 93))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonEditar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvar)
@@ -276,7 +275,8 @@ public class listarCliente extends javax.swing.JFrame {
                 .addGap(36, 36, 36))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(706, 559));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -343,7 +343,7 @@ jLabelID.setText((jTable1.getValueAt(jTable1.getSelectedRow(),0)).toString());
             jTextTelefone.setText(ler.getTelefone());
             jTextEndereco.setText(ler.getEndereco());
             jTextNumero.setText(ler.getNumero());
-            jTextCep.setText(ler.getCep());
+            jTextCep.setText(ler.getCidade());
             jTextBairro.setText(ler.getBairro());
 
     } catch (BancoDeDadosException ex) {

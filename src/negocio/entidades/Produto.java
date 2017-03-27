@@ -78,5 +78,11 @@ public class Produto {
      public Produto(int i){
          setProduto_id(i);
      }
+   
+     public Produto(int qtde, int id){
+        setQuantidade(qtde);
+         setProduto_id(id);
+     }
+     
 }
 

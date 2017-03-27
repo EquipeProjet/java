@@ -6,8 +6,10 @@
 package GUI;
 //import exemplo.ListarUsuario;
 import GUI.CadastroCliente;
+import excecoes.BancoDeDadosException;
 import excecoes.LoginExistenteException;
 import excecoes.NomeNuloException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,8 +41,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonUsuario = new javax.swing.JButton();
         jButtonVenda = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jButtonProduto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemCliente = new javax.swing.JMenuItem();
@@ -54,6 +56,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         relatoriodeclientes = new javax.swing.JMenuItem();
         relatorioproduto = new javax.swing.JMenuItem();
@@ -65,6 +68,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CEE 1.0");
+        setPreferredSize(new java.awt.Dimension(600, 500));
+        getContentPane().setLayout(null);
 
         jButtonCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_male.png"))); // NOI18N
         jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +77,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonCliente);
+        jButtonCliente.setBounds(10, 0, 53, 48);
 
         jButtonUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-usuario.png"))); // NOI18N
         jButtonUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +86,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonUsuarioActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonUsuario);
+        jButtonUsuario.setBounds(73, 0, 53, 48);
 
         jButtonVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-venda.png"))); // NOI18N
         jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +95,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonVendaActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonVenda);
+        jButtonVenda.setBounds(199, 0, 53, 48);
 
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sair-foco.png"))); // NOI18N
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
@@ -93,8 +104,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonSairActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/auto1.png"))); // NOI18N
+        getContentPane().add(jButtonSair);
+        jButtonSair.setBounds(262, 0, 53, 48);
 
         jButtonProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/produto-foco.png"))); // NOI18N
         jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +113,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonProdutoActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonProduto);
+        jButtonProduto.setBounds(136, 0, 53, 48);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg-1920deyvison.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 610, 470);
 
         jMenu1.setText("Cadastros");
 
@@ -179,7 +197,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Financeiro");
+        jMenu3.setText("Estoque");
+
+        jMenuItem2.setText("Editar Estoque");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Relatorios");
@@ -212,47 +239,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1)))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                        .addGap(28, 28, 28))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        pack();
+        setSize(new java.awt.Dimension(622, 532));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutoActionPerformed
@@ -266,7 +254,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jMenuItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClienteActionPerformed
-        CadastroCliente c = new CadastroCliente();
+        CadastroCliente c = null;
+        try {
+            c = new CadastroCliente();
+        } catch (NomeNuloException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
        c.setVisible(true);
        
@@ -277,7 +272,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
-       CadastroCliente c = new CadastroCliente();
+       CadastroCliente c = null;
+        try {
+            c = new CadastroCliente();
+        } catch (NomeNuloException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
        c.setVisible(true);
        
@@ -301,6 +303,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             fv = new FormularioVendas();
         } catch (NomeNuloException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
      
@@ -360,15 +364,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             fv = new FormularioVendas();
         } catch (NomeNuloException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
      
         fv.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void RelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelatorioVendaActionPerformed
-        Relatoriovenda fv = null;
+        Listagemvenda fv = null;
         try {
-            fv = new Relatoriovenda();
+            fv = new Listagemvenda();
         } catch (NomeNuloException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -378,9 +384,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void relatoriodeclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatoriodeclientesActionPerformed
 
-    Relatoriocliente fv = null;
+    Listagemcliente fv = null;
         try {
-            fv = new Relatoriocliente();
+            fv = new Listagemcliente();
         } catch (NomeNuloException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -393,9 +399,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void relatorioprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioprodutoActionPerformed
 
 
-        Relatorioproduto fv = null;
+        ListagemProduto fv = null;
         try {
-            fv = new Relatorioproduto();
+            fv = new ListagemProduto();
         } catch (NomeNuloException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -403,6 +409,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         fv.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_relatorioprodutoActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+         EditarEstoque eq = null;
+        try {
+            eq = new EditarEstoque();
+        } catch (NomeNuloException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BancoDeDadosException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        eq.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,6 +474,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemCliente;
     private javax.swing.JMenuItem jMenuItemProduto;

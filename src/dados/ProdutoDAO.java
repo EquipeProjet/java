@@ -17,7 +17,32 @@ import java.util.ArrayList;
 import negocio.entidades.Produto;
 
 public class ProdutoDAO extends GenericDAO   {
+    
+    public void editarEstoque(int quantidade,int produto_id) throws BancoDeDadosException {
+    
+        String query = "select quantidade from produto where produto_id=?";
+        PreparedStatement ps = prepareStatement(query);
+    try{
+        
+            ps.setInt(1, quantidade);
+            ps.setInt(2, produto_id);
+          ResultSet rs = ps.executeQuery();
+          
+           if (rs.next()) {
+                        rs.getInt("quantidade");
+                        rs.getInt("produto_id");
+            }
+            //fechar as conexoes
+            rs.close();
+            ps.close();
 
+    }catch (SQLException ex) {
+            throw new BancoDeDadosException("Erro ao Editar Estoque!" + ex);
+        }
+    
+    }
+    
+    
     public void adicionarProduto(Produto u) throws BancoDeDadosException {
         String query = "INSERT INTO Produto (nome,preco,quantidade)values(?,?, ?)";
         PreparedStatement ps = prepareStatement(query);
@@ -113,6 +138,7 @@ public Produto lerProduto(String id)throws BancoDeDadosException, NomeNuloExcept
             rs.close();
             ps.close();
             return u;
+            
              }//if
 
             return null;

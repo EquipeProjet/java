@@ -33,7 +33,7 @@ public class CadastroClientes {
 //se tiver alguma validacao de negocio pode fazer aqui
         //Repassando pra colecao de dados fazer a persistencia
         
-        Cliente  a = new Cliente(n, c, e, nu, ce, t, b); 
+        Cliente  a = new Cliente(n, c, t, e, nu, ce, b); 
         //manda cadastra no banco
        
         clientes.inserirCliente(a);

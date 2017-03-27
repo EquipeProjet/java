@@ -5,7 +5,6 @@
  */
 package dados;
 
-import dados.GenericDAO;
 import excecoes.BancoDeDadosException;
 
 import excecoes.NomeNuloException;
@@ -19,7 +18,7 @@ import javax.swing.JOptionPane;
 public class ClienteDAO extends GenericDAO {
 
     public void inserirCliente(Cliente a) throws BancoDeDadosException {
-        String query = "INSERT INTO Cliente (nome, cpf, telefone, endereco, numero, cep,  bairro)values(?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Cliente (nome, cpf, telefone, endereco, numero, cidade, bairro)values(?,?,?,?,?,?,?)";
         PreparedStatement ps = prepareStatement(query);
         //String querySelect = "SELECT cpf FROM Cliente WHERE cpf = ?";
         //PreparedStatement psSelect = prepareStatement(querySelect);
@@ -40,7 +39,7 @@ public class ClienteDAO extends GenericDAO {
 
             ps.setString(5, a.getNumero());
 
-            ps.setString(6, a.getCep());
+            ps.setString(6, a.getCidade());
 
             ps.setString(7, a.getBairro());
 //executar o comando
@@ -59,13 +58,13 @@ public class ClienteDAO extends GenericDAO {
     public Cliente lerCliente(String cliente_id)throws BancoDeDadosException, NomeNuloException {
     String query = "SELECT * FROM Cliente where cliente_id = ?";
      PreparedStatement ps = prepareStatement(query);
-     
+    
      try {
             ps.setString(1, cliente_id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 
-            Cliente u = new Cliente(rs.getString("nome"), rs.getString("cpf"),rs.getString("telefone"),rs.getString("endereco"),rs.getString("numero"),rs.getString("cep"),rs.getString("bairro"));
+            Cliente u = new Cliente(rs.getString("nome"), rs.getString("cpf"),rs.getString("telefone"),rs.getString("endereco"),rs.getString("numero"),rs.getString("cidade"),rs.getString("bairro"));
             
             rs.close();
             ps.close();
@@ -106,7 +105,7 @@ public class ClienteDAO extends GenericDAO {
                         rs.getString("telefone"),
                         rs.getString("endereco"),
                         rs.getString("numero"),
-                        rs.getString("cep"),
+                        rs.getString("cidade"),
                         rs.getString("bairro")
                 );
                 
@@ -150,7 +149,7 @@ public class ClienteDAO extends GenericDAO {
                         rs.getString("telefone"),
                         rs.getString("endereco"),
                         rs.getString("numero"),
-                        rs.getString("cep"),
+                        rs.getString("cidade"),
                         rs.getString("bairro"));
 
                 return u;
@@ -189,7 +188,7 @@ public class ClienteDAO extends GenericDAO {
             ps.setString(3, cliente.getTelefone());
             ps.setString(4, cliente.getEndereco());
             ps.setString(5, cliente.getNumero());
-            ps.setString(6, cliente.getCep());
+            ps.setString(6, cliente.getCidade());
             ps.setString(7, cliente.getBairro());
             ps.setInt(8, cliente.getCliente_id());
             ps.executeUpdate();

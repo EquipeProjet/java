@@ -38,9 +38,9 @@ public class Fachada {
     
     
     
-    public void adicionarVenda(String d, String nc,String np, double v, int q) throws BancoDeDadosException, NomeNuloException {
+    public void adicionarVenda(int i, String d, String nc, String np, double v, int q) throws BancoDeDadosException, NomeNuloException {
         
-       vendas.adicionarVenda(d, nc, np, v, q);
+       vendas.adicionarVenda(i,d, nc, np, v, q);
     
     }
     
@@ -96,8 +96,8 @@ public class Fachada {
     //Cliente
     
     
-   public void inserirCliente(String n, String c, String e,String nu, String ce, String t, String b) throws BancoDeDadosException, NomeNuloException {                       
-        clientes.inserirCliente(n, c, e, nu, ce, t, b);
+   public void inserirCliente(String n, String c, String t,String e, String nu, String ce, String b) throws BancoDeDadosException, NomeNuloException {                       
+        clientes.inserirCliente(n, c, t, e, nu, ce, b);
         
    }
    

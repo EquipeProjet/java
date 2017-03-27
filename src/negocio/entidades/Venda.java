@@ -73,7 +73,7 @@ public class Venda {
     
 
      
-     public Venda (int i,  String d, String nc, String np, double v, int q) throws NomeNuloException{
+     public Venda (int i, String d, String nc, String np, double v, int q) throws NomeNuloException{
         setId(i);
         setData(d);
         setNomeCliente(nc);

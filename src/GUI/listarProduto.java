@@ -116,7 +116,7 @@ public class listarProduto extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editar Produto");
+        setTitle("Editar  Produto");
 
         jLabelID.setText("Id:");
 
@@ -146,6 +146,13 @@ public class listarProduto extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Quantidade:");
+
+        jTextFielQuant.setEditable(false);
+        jTextFielQuant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFielQuantActionPerformed(evt);
+            }
+        });
 
         jButtonDeletar.setText("Deletar");
         jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +261,8 @@ public class listarProduto extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(598, 389));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
@@ -376,6 +384,10 @@ public class listarProduto extends javax.swing.JFrame {
             Logger.getLogger(listarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonDeletarActionPerformed
+
+    private void jTextFielQuantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielQuantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFielQuantActionPerformed
 
     /**
      * @param args the command line arguments

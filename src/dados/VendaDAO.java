@@ -16,20 +16,24 @@ import negocio.entidades.Venda;
 
 public class VendaDAO extends GenericDAO {
 
-    public void adicionarVenda(Venda u) throws BancoDeDadosException {
-        String query = "INSERT INTO Venda ( data,nomeCliente ,nomeProduto, valorVenda,quant)values(?,?,?,?,?)";
+  public void adicionarVenda(Venda u) throws BancoDeDadosException {
+        String query = "INSERT INTO venda (id,data,nomeCliente ,nomeProduto,valorVenda,quant)values(?,?,?,?,?,?)";
         PreparedStatement ps = prepareStatement(query);
-
+            
+        
+        
+        
         try {
             //pegando o login
             //ps.setString(1, u.getNome());
             //pegando a senha
-            ps.setString(1, u.getData());
-            
-            ps.setString(2, u.getNomeCliente());
-             ps.setString(3, u.getNomeProduto());
-            ps.setDouble(4, u.getValorVenda());
-             ps.setInt(5, u.getQuant());
+            ps.setInt(1, u.getId());
+            ps.setString(2, u.getData());
+            ps.setString(3, u.getNomeCliente());
+            ps.setString(4, u.getNomeProduto());
+            ps.setDouble(5, u.getValorVenda());
+            ps.setInt(6, u.getQuant());
+          
             //executar o comando
             ps.executeUpdate();
             ps.close();
