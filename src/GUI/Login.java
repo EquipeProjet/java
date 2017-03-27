@@ -57,7 +57,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(166, 27, 175, 37);
         getContentPane().add(jTextFieldLogin);
-        jTextFieldLogin.setBounds(140, 110, 222, 20);
+        jTextFieldLogin.setBounds(140, 100, 222, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Login:");
@@ -69,7 +69,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(90, 140, 50, 17);
         getContentPane().add(jPasswordFieldSenha);
-        jPasswordFieldSenha.setBounds(140, 140, 222, 20);
+        jPasswordFieldSenha.setBounds(140, 130, 222, 30);
 
         jButtonEnviar.setText("Acessar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
